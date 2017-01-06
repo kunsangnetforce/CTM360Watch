@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#d20d0d</color>
+    <color name="colorPrimaryTransparent">#00000000</color>
+    <color name="colorPrimaryDark">#b4312b</color>
+    <color name="colorAccent">#EE4039</color>
+    <color name="tranparent">#00000000</color>
+    <color name="total">#3196d6</color>
+    <color name="high">#EE3739</color>
+    <color name="medium">#FEC00F</color>
+    <color name="low">#F5EF50</color>
+    <color name="fyi">#C0BFBF</color>
+    <color name="close">#f5bd16</color>
+    <color name="member_feedback">#e74168</color>
+    <color name="monitoring">#8d15de</color>
+    <color name="new_count">#0eedc1</color>
+    <color name="resolved">#40b918</color>
+    <color name="wip">#e98707</color>
+    <color name="open">#4b4646</color>
+
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CTM360Wear</string>
+    <string name="hello_round">Hello Round World!</string>
+    <string name="hello_square">Hello Square World!</string>
+
+    <string name="url">https://dev.ctm360.com/rest/getwatchdata</string>
+    <string name="progress_dialog">Loading...</string>
+    <string name="please_wait">Please Wait</string>
+</resources>
