@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.wearable.view.DismissOverlayView;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,6 +27,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     UserSessionManager userSessionManager;
     String member_name = "";
     TextView textViewDay, textViewDate, textViewTime;
+    private DismissOverlayView mDismissOverlay;
+    private GestureDetector mDetector;
 
 
     @Override
@@ -40,8 +45,22 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         setTime();
 
     }
-
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        return mDetector.onTouchEvent(ev) || super.onTouchEvent(ev);
+    }
     private void initView() {
+        mDismissOverlay = (DismissOverlayView) findViewById(R.id.dismiss_overlay);
+        mDismissOverlay.setIntroText(R.string.long_press_intro);
+        mDismissOverlay.showIntroIfNecessary();
+
+        // Configure a gesture detector
+        mDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            public void onLongPress(MotionEvent ev) {
+                mDismissOverlay.show();
+            }
+        });
+
         textViewDay = (TextView) findViewById(R.id.textViewDay);
         textViewDate = (TextView) findViewById(R.id.textViewDate);
         textViewTime = (TextView) findViewById(R.id.textViewTime);
@@ -61,6 +80,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 intent = new Intent(context, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.linearLayoutStatus:
                 intent = new Intent(context, GeneralActivity.class);

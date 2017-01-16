@@ -2,6 +2,7 @@ package com.netforceinfotech.kunsang.ctm360watch.fragment.recycler_bar;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,15 +50,14 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         MyData myData = itemList.get(position);
         myHolder.textViewCount.setText(myData.number + "");
         myHolder.textViewName.setText(myData.name);
+        Log.i("test",total+"  "+myData.number);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getHeight(myData.number, total));
         myHolder.view1.setLayoutParams(layoutParams);
         myHolder.view1.setBackgroundColor(myData.color);
-
-
     }
 
     private int getHeight(int number, int total) {
-        return (number * 70) / total;
+        return (number * 40) / total;
 
     }
 

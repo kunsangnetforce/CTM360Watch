@@ -161,7 +161,7 @@ public class BarFragment extends Fragment implements View.OnClickListener {
 
     private void setupRecycler(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
-        myAdapter = new MyAdapter(context, myDatas, 200);
+        myAdapter = new MyAdapter(context, myDatas, total);
         linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(myAdapter);

@@ -11,20 +11,21 @@ android {
     }
     compileSdkVersion 24
     buildToolsVersion "25.0.2"
+
     defaultConfig {
         multiDexEnabled true
         applicationId "com.netforceinfotech.kunsang.ctm360watch"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 8
+        versionName "1.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            debuggable true
+            debuggable false
             signingConfig signingConfigs.config
         }
         debug {
@@ -42,5 +43,7 @@ dependencies {
     compile 'com.google.android.gms:play-services:10.0.1'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:multidex:+'
+    compile 'Teleport:teleportlib:0.1.4'
+
     testCompile 'junit:junit:4.12'
 }

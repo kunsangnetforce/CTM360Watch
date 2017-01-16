@@ -1,14 +1,23 @@
 package com.netforceinfotech.kunsang.ctm360watch;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.wearable.activity.WearableActivity;
+import android.support.wearable.view.BoxInsetLayout;
+import android.support.wearable.view.DismissOverlayView;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,15 +45,17 @@ import javax.net.ssl.SSLEngine;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends WearableActivity implements View.OnClickListener {
 
     private Timer timer;
     TextView textViewDay, textViewDate, textViewTime;
-    EditText editText;
     Context context;
     UserSessionManager userSessionManager;
     FrameLayout frameLayout;
     private ProgressBar progressBar;
+    BoxInsetLayout boxLayout;
+    private DismissOverlayView mDismissOverlay;
+    private GestureDetector mDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +63,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         context = this;
         userSessionManager = new UserSessionManager(context);
+
         initView();
+
         if (!userSessionManager.getToken().equalsIgnoreCase("")) {
             getData(userSessionManager.getToken());
             frameLayout.setVisibility(View.GONE);
@@ -60,15 +73,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         setFormatedTime();
         setTime();
+        IntentFilter messageFilter = new IntentFilter(Intent.ACTION_SEND);
+        MessageReceiver messageReceiver = new MessageReceiver();
+        LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiver, messageFilter);
+    }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        return mDetector.onTouchEvent(ev) || super.onTouchEvent(ev);
     }
 
     private void initView() {
+        boxLayout = (BoxInsetLayout) findViewById(R.id.boxLayout);
+        mDismissOverlay = (DismissOverlayView) findViewById(R.id.dismiss_overlay);
+        mDismissOverlay.setIntroText(R.string.long_press_intro);
+        mDismissOverlay.showIntroIfNecessary();
+
+        // Configure a gesture detector
+        mDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            public void onLongPress(MotionEvent ev) {
+                mDismissOverlay.show();
+            }
+        });
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         frameLayout = (FrameLayout) findViewById(R.id.frame);
-        editText = (EditText) findViewById(R.id.et_token);
-        findViewById(R.id.buttonSubmit).setOnClickListener(this);
         textViewDay = (TextView) findViewById(R.id.textViewDay);
         textViewDate = (TextView) findViewById(R.id.textViewDate);
         textViewTime = (TextView) findViewById(R.id.textViewTime);
@@ -138,14 +167,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.buttonSubmit:
-                if (editText.length() <= 0) {
-                    showMessage("Please enter token");
-                    return;
-                }
-                getData(editText.getText().toString().trim());
-
-                break;
         }
     }
 
@@ -271,5 +292,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void showMessage(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    public class MessageReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String message = intent.getStringExtra("message");
+            Log.v("myTag", "Main activity received message: " + message);
+            // Display message in UI
+            userSessionManager.setToken(message);
+            getData(message);
+        }
     }
 }

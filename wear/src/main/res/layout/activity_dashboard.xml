@@ -1,150 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.wearable.view.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="5dp"
     android:background="@color/white">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp"
-        app:layout_box="all">
-            <LinearLayout
-                android:layout_gravity="top"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="4dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textViewDay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Thu"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="8sp" />
-
-                    <TextView
-                        android:id="@+id/textViewDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="17"
-                        android:textColor="@color/colorPrimary" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/textViewTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="17:00"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="25sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
+        android:orientation="vertical"
+        app:layout_box="top|left|right">
 
         <LinearLayout
-            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:layout_gravity="top"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:weightSum="150">
+            app:layout_box="top">
 
             <LinearLayout
-                android:id="@+id/linearLayoutStatus"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:layout_weight="50"
-                android:gravity="center_horizontal"
+                android:layout_marginRight="4dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/img_bystatus" />
-
-
                 <TextView
+                    android:id="@+id/textViewDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center|bottom"
-                    android:text="Incident By Status"
-                    android:textColor="@color/grey"
-                    android:textSize="8sp"
-                    android:id="@+id/textView" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayoutSummary"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:layout_weight="50"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/img_summary" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|bottom"
-                    android:text="Summary"
-                    android:textColor="@color/grey"
+                    android:text="Thu"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="8sp" />
+
+                <TextView
+                    android:id="@+id/textViewDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="17"
+                    android:textColor="@color/colorPrimary" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayoutSeverity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:layout_weight="50"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/img_byseverity" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/textViewTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center|bottom"
-                    android:text="Incident By Severity"
-                    android:textColor="@color/grey"
-                    android:textSize="8sp" />
+                    android:text="17:00"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25sp" />
+
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:orientation="vertical">
+            app:layout_box="left|right">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="150">
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="50"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/img_bystatus" />
+
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|bottom"
+                        android:text="Incident By Status"
+                        android:textColor="@color/grey"
+                        android:textSize="8sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutSummary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="50"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/img_summary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|bottom"
+                        android:text="Summary"
+                        android:textColor="@color/grey"
+                        android:textSize="8sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutSeverity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="50"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/img_byseverity" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|bottom"
+                        android:text="Incident By Severity"
+                        android:textColor="@color/grey"
+                        android:textSize="8sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="bottom|center"
+            android:orientation="vertical"
+            app:layout_box="bottom">
 
             <ImageView
                 android:id="@+id/imageViewSetting"
@@ -156,9 +166,17 @@
                 android:id="@+id/textViewName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
                 android:text="ABC bank"
-                android:textColor="@color/grey" />
+                android:textColor="@color/grey"
+                android:textSize="12sp" />
         </LinearLayout>
-</FrameLayout>
+    </LinearLayout>
+
+
+
+
+    <android.support.wearable.view.DismissOverlayView
+        android:id="@+id/dismiss_overlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </android.support.wearable.view.BoxInsetLayout>
