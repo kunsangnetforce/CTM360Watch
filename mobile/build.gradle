@@ -25,7 +25,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            debuggable false
+            debuggable true
             signingConfig signingConfigs.config
         }
         debug {
@@ -43,7 +43,7 @@ dependencies {
     compile 'com.google.android.gms:play-services:10.0.1'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:multidex:+'
-    compile 'Teleport:teleportlib:0.1.4'
+    compile 'com.koushikdutta.ion:ion:2.+'
 
     testCompile 'junit:junit:4.12'
 }

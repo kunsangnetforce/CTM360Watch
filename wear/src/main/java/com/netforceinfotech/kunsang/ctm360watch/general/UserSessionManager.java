@@ -13,6 +13,7 @@ public class UserSessionManager {
     // All Shared Preferences Keys
     private static final String TOKEN = "token";
     private static final String JSON = "JSON";
+    private static final String TIME = "TIME";
     // Shared Preferences reference
     SharedPreferences pref;
     // Editor reference for Shared preferences
@@ -39,6 +40,7 @@ public class UserSessionManager {
         editor.putString(TOKEN, regid);
         editor.commit();
     }
+
     public String getJsonData() {
         return pref.getString(JSON, "");
     }
@@ -47,9 +49,18 @@ public class UserSessionManager {
         editor.putString(JSON, regid);
         editor.commit();
     }
+
     public void clearData() {
         editor.clear().commit();
     }
 
 
+    public void setTime(String s) {
+        editor.putString(TIME, s);
+        editor.commit();
+    }
+
+    public String getTime() {
+        return pref.getString(TIME, "");
+    }
 }

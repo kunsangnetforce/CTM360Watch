@@ -42,6 +42,5 @@ dependencies {
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support:multidex:+'
     provided 'com.google.android.wearable:wearable:2.0+'
-    compile 'Teleport:teleportlib:0.1.4'
 
 }

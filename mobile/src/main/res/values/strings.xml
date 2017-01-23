@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CTM360Watch</string>
+    <string name="url">https://dev.ctm360.com/rest/getwatchdata</string>
 </resources>
